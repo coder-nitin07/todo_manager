@@ -15,7 +15,8 @@ function App() {
       // Add new Todo
       const newTodo = {
           id: Date.now(),
-          text: todoText
+          text: todoText,
+          completed: false
       };
 
       // Add the todo 
@@ -62,6 +63,20 @@ function App() {
       setEditText('');
   };
 
+
+  // todo complete toggle
+  const handleToggleComplete = (id) =>{
+      const updatedTodos = todos.map(todo =>{
+          if(todo.id === id){
+              return { ...todo, completed: !todo.completed };
+          }
+
+          return todo;
+      });
+
+      setTodos(updatedTodos);
+  };
+
   return (
       <div className='max-w-md mx-auto mt-10 px-4"'>
           <h1 className='text-3xl font-bold text-blue-600 mb-4 text-center'>Todo Manager</h1>
@@ -81,6 +96,7 @@ function App() {
               handleEditChange={ handleEditChange }
               handleSaveEdit={ handleSaveEdit }
               handleDeleteTodo={ handleDeleteTodo }
+              handleToggleComplete={ handleToggleComplete }
           />
       </div>
   )

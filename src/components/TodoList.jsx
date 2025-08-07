@@ -6,7 +6,8 @@ const TodoList = ({
     handleEditClick,
     handleEditChange,
     handleSaveEdit,
-    handleDeleteTodo 
+    handleDeleteTodo,
+    handleToggleComplete
   }) => {
   return (
     <div className="mt-4 space-y-2">
@@ -35,8 +36,21 @@ const TodoList = ({
                         </>
                       ) : (
                         <>
-                            <span>{ todo.text }</span>
+                            {/* Checkbox and Todo Text */}
+                            <div className="flex items-center gap-2 w-full">
+                                <input 
+                                    type="checkbox"
+                                    checked={ todo.completed }
+                                    onChange={()=> handleToggleComplete(todo.id) }
+                                />
 
+                                <span className={ todo.completed ? 'line-through text-gray-500' : '' }>
+                                    { todo.text }
+                                </span>
+                            </div>
+
+
+                            {/* Edit and Cancel buttons */}
                             <div className="flex gap-2">
                                  <button
                                     onClick={()=> handleEditClick(todo.id, todo.text) }
