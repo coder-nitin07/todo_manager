@@ -63,6 +63,18 @@ function App() {
       setEditText('');
   };
 
+  // Cancel Edit Feature
+  const handleCancelEdit = () =>{
+      setEditingId(null);
+      setEditText('');
+  };
+
+  
+  // Clear todo
+  const handleClearTodos = ()=>{
+      setTodos([]);
+  };
+
 
   // todo complete toggle
   const handleToggleComplete = (id) =>{
@@ -95,9 +107,21 @@ function App() {
               handleEditClick={ handleEditClick }
               handleEditChange={ handleEditChange }
               handleSaveEdit={ handleSaveEdit }
+              handleCancelEdit={ handleCancelEdit }
               handleDeleteTodo={ handleDeleteTodo }
               handleToggleComplete={ handleToggleComplete }
           />
+
+          { todos.length > 0 && (
+              <div className='mt-6 text-center'>
+                  <button 
+                      onClick={ handleClearTodos }
+                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow"    
+                  >
+                      Clear All Todos
+                  </button>
+              </div>
+          ) }
       </div>
   )
 }
